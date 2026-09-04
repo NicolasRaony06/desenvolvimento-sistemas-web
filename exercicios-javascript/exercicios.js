@@ -44,10 +44,27 @@ function questao3(preco, quantidade) {
  */
 function questao4(ano_nascimento){
     const ano_atual = new Date().getFullYear()
-    
+    let idade = ano_atual - ano_nascimento
+    let podeVotar = false
+    let obgVotar = false
+    let servMilitarIsento = false
+
+    if(idade >= 18){
+        podeVotar = true
+        obgVotar = true
+    }
+    else if(idade >= 16 && idade < 18){
+        podeVotar = true
+        servMilitarIsento = true
+    }
+    else {
+        servMilitarIsento = true
+    }
+
+    console.log(idade, podeVotar, obgVotar, servMilitarIsento);
 }
 
 /* questao1(3665)*/
 // questao2(33)
 // questao3(100, 1)
-questao4(2000)
+// questao4(2000)
