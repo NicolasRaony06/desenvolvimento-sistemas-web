@@ -17,12 +17,12 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html">Fluxo<span class="logo-dot">.</span></a>
+      <a class="logo" href="{% url "home" %}">Fluxo<span class="logo-dot">.</span></a>
 
       <nav class="site-nav">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="portfolio.html">Portfólio</a></li>
+          <li><a href="{% url "home" %}" class="active">Home</a></li>
+          <li><a href="{% url "portifolio" %}">Portfólio</a></li>
         </ul>
       </nav>
 
@@ -39,15 +39,15 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="index.html">Fluxo<span class="logo-dot">.</span></a>
+          <a class="logo" href="{% url "home" %}">Fluxo<span class="logo-dot">.</span></a>
           <p>Estúdio criativo independente, especializado em branding e produto digital.</p>
         </div>
 
         <div class="footer-col">
           <h4>Navegação</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfólio</a></li>
+            <li><a href="{% url "home" %}">Home</a></li>
+            <li><a href="{% url "portifolio" %}">Portfólio</a></li>
             <li><a href="index.html#sobre">Sobre</a></li>
             <li><a href="index.html#contato">Contato</a></li>
           </ul>
