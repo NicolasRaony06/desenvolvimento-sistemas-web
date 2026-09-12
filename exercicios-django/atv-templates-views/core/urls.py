@@ -21,5 +21,5 @@ from django.shortcuts import render
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda r: render(r, 'home/index.html'), name='home'),
-    #path('portifolio/', include('portifolio.urls'))
+    path('portifolio/', include('portifolio.urls'))
 ]
