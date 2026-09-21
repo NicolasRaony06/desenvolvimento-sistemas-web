@@ -5,4 +5,5 @@ app_name = 'biblioteca'
 
 urlpatterns = [
     path('cadastrar_livro/', views.cadastrarLivro, name='cadastrar_livro'),
+    path('listar_livros/', views.listarLivros, name="listar_livros"),
 ]

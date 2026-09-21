@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import LivroForm
+from .models import Livro
 
 # Create your views here.
 def cadastrarLivro(request):
@@ -11,3 +12,8 @@ def cadastrarLivro(request):
     else:
         form = LivroForm()
     return render(request, 'livro/cadastrar.html', {'form': form})
+
+def listarLivros(request):
+    if request.method == 'GET':
+        livros = Livro.objects.all()
+        return render(request, 'livro/listar.html', {'livros': livros})

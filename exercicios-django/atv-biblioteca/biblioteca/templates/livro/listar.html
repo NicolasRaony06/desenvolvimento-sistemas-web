@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Listar Livros{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h1>Livros</h1>
+    <a href="{% url "biblioteca:cadastrar_livro" %}" class="btn btn-primary">Cadastrar Livro</a>
+    <br>
+    <br>
+    <div class="container row">
+        {% for livro in livros %}
+        <div class="card" style="width: 12rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{livro.titulo}}</h5>
+            <h6 class="card-subtitle">{{livro.autor}}</h6>
+            <h6 class="card-subtitle">{{livro.ano_publicacao}}</h6>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
+
