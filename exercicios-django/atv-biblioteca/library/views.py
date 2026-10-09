@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LivroForm
-from .models import Book
+from .models import Book, Author
 
 # Create your views here.
 def register_book(request):
@@ -15,5 +15,13 @@ def register_book(request):
 
 def view_books(request):
     if request.method == 'GET':
-        books = Book.objects.all()
+        books = Book.objects.select_related('author')
         return render(request, 'book/view.html', {'books': books})
+
+def view_author(request, id):
+    author = get_object_or_404(
+        Author,
+        id=id
+    )
+
+    return render(request, 'author/view.html', {'author': author})

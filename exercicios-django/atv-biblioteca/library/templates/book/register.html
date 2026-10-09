@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>Cadastrar Livro</h1>
-    <a href="{% url "book:view_books" %}" class="btn btn-primary">Listar Livros</a>
+    <a href="{% url "library:view_books" %}" class="btn btn-primary">Listar Livros</a>
     <form method="post" class="form-control">
         {% csrf_token %}
         {{form.as_p}}

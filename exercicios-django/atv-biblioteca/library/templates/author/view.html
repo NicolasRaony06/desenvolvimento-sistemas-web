@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Autor {{author.name}}{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h1>Livros</h1>
+    <a href="{% url "library:register_book" %}" class="btn btn-primary">Cadastrar Livro</a>
+    <br>
+    <br>
+    <div class="container row">
+        <div class="card" style="width: 12rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{author.name}}</h5>
+            <h6 class="card-subtitle">{{author.nationality}}</a></h6>
+            {% comment %} <h6 class="card-subtitle"><a href="{% url "library:view_author" book.author.id %}">{{book.author}}</a></h6> {% endcomment %}
+            {% comment %} <h6 class="card-subtitle">{{book.published_year}}</h6> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
