@@ -1,9 +1,9 @@
-from .models import Livro
+from .models import Book
 from django import forms
 
 class LivroForm(forms.ModelForm):
     class Meta:
-        model = Livro
+        model = Book
         fields = "__all__"
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
