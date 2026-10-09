@@ -4,7 +4,7 @@ Uma atividade de Django para gerenciar uma biblioteca digital com autores, livro
 
 ## 📋 Descrição
 
-Este atividade implementa um sistema de biblioteca que permite cadastrar livros, autores e categorias, com uma estrutura normalizada de banco de dados. O foco principal é a demonstração de:
+Esta atividade implementa um sistema de biblioteca que permite cadastrar livros, autores e categorias, com uma estrutura normalizada de banco de dados. O foco principal é a demonstração de:
 
 - Relacionamentos entre modelos (ForeignKey, ManyToManyField)
 - Configuração avançada do admin do Django
