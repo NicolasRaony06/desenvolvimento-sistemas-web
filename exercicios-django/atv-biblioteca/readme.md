@@ -1,10 +1,10 @@
-# Projeto Biblioteca Django
+# Atividade Biblioteca Django
 
-Um projeto Django para gerenciar uma biblioteca digital com autores, livros e categorias, aplicando conceitos de normalização de dados e relações entre modelos.
+Uma atividade de Django para gerenciar uma biblioteca digital com autores, livros e categorias, aplicando conceitos de normalização de dados e relações entre modelos.
 
 ## 📋 Descrição
 
-Este projeto implementa um sistema de biblioteca que permite cadastrar livros, autores e categorias, com uma estrutura normalizada de banco de dados. O foco principal é a demonstração de:
+Este atividade implementa um sistema de biblioteca que permite cadastrar livros, autores e categorias, com uma estrutura normalizada de banco de dados. O foco principal é a demonstração de:
 
 - Relacionamentos entre modelos (ForeignKey, ManyToManyField)
 - Configuração avançada do admin do Django
