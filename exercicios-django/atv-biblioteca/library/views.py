@@ -18,10 +18,10 @@ def view_books(request):
         books = Book.objects.select_related('author')
         return render(request, 'book/view.html', {'books': books})
 
-def view_author(request, id):
+def view_author_detailed(request, id):
     author = get_object_or_404(
-        Author,
+        Author.objects.prefetch_related('books'),
         id=id
     )
 
-    return render(request, 'author/view.html', {'author': author})
+    return render(request, 'author/view_detailed.html', {'author': author})
