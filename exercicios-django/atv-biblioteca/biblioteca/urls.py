@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'biblioteca'
+app_name = 'library'
 
 urlpatterns = [
-    path('cadastrar_livro/', views.cadastrarLivro, name='cadastrar_livro'),
-    path('listar_livros/', views.listarLivros, name="listar_livros"),
+    path('register_book/', views.register_book, name='register_book'),
+    path('view_books/', views.view_books, name="view_books"),
 ]

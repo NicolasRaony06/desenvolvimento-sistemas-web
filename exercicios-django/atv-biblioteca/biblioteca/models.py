@@ -1,11 +1,16 @@
 from django.db import models
 
 # Create your models here.
-class Livro(models.Model):
-    titulo = models.CharField(max_length=200)
-    autor = models.CharField(max_length=120)
-    ano_publicacao = models.IntegerField()
-    disponivel = models.BooleanField(default=True)
+class Book(models.Model):
+    tittle = models.CharField(max_length=200)
+    author = models.ForeignKey("Author", on_delete=models.PROTECT, related_name="books")
+    published_year = models.IntegerField()
+    available = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['titulo']
+        ordering = ['tittle']
+        verbose_name = 'Livro'
+        verbose_name_plural = 'Livros'        
+
+
+    
