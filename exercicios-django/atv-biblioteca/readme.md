@@ -48,6 +48,16 @@ Esta atividade implementa um sistema de biblioteca que permite cadastrar livros,
 
 **Decisão:** Utilizar `models.PROTECT` na ForeignKey de `author` em `Book` para evitar perda de dados de Livro. Assim, para excluir autor é preciso primeiro resolver as pendencias existentes, no caso seus livros. Ao tentar remover autor é retornado um erro `ProtectedError`.
 
+### 2.1 Resposta Desafio
+
+**Que dados se perdem quando a migração é revertida? Por quê?**
+Ao reverter a migração, os vínculos criados no campo authors (ManyToMany) serão perdidos porque a função reverter_copia executa o comando book.authors.clear(). Se você reverter completamente até o passo anterior à criação do ManyToMany, a tabela intermediária que guarda as relações de coautoria será excluída do banco de dados, fazendo com que o Django apague definitivamente qualquer vínculo de múltiplos autores que tenha sido cadastrado após a mudança.
+
+**Com ManyToMany, o que acontece com um livro quando o seu único autor é apagado? Como garantir que todo livro tenha pelo menos um autor?**
+• O que acontece: Diferente da ForeignKey (onde o on_delete=models.CASCADE apagaria o livro inteiro), no ManyToManyField, se o único autor for apagado, o livro continua existindo, mas a relação é deletada na tabela intermediária. O livro ficará "órfão", ou seja, com a lista de autores vazia.
+
+• Como garantir pelo menos um autor: Como o banco de dados (SQL) não consegue validar nativamente um limite mínimo em tabelas ManyToMany no momento da criação do registro, essa validação deve ser feita na camada da aplicação (Django). Podemos garantir isso criando uma validação customizada no método clean() do Model ou no Form/ModelForm do Django Admin, impedindo que o livro seja salvo se a contagem de authors for igual a zero.
+
 ### 3. Configuração do Admin
 
 #### `BookAdmin`
