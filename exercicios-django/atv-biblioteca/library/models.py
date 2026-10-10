@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Book(models.Model):
     tittle = models.CharField(max_length=200)
-    author = models.ForeignKey("Author", on_delete=models.PROTECT, null=True, blank=True)
+    #author = models.ForeignKey("Author", on_delete=models.PROTECT, null=True, blank=True)
     authors = models.ManyToManyField("Author", related_name="books", blank=True)
     published_year = models.IntegerField()
     available = models.BooleanField(default=True)
