@@ -23,4 +23,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Event(models.Model):
+    title = models.CharField(max_length=75)
+    description = models.TextField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    location = models.ForeignKey('Location', on_delete=models.PROTECT, related_name="events")
+    categories = models.ManyToManyField("Category", blank=True, related_name="events")
 
+    class Meta:
+        verbose_name = "Evento"
+        verbose_name_plural = "Eventos"
+
+    def __str__(self):
+        return self.title
+
+    
