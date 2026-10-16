@@ -81,4 +81,4 @@ class Report(models.Model):
         verbose_name_plural = 'Relatórios'
 
     def __str__(self):
-        return self.event
+        return self.event.title
