@@ -51,3 +51,16 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.title
+
+class Registration(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254)
+    registrated_at = models.DateTimeField(auto_now_add=True)
+    event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name='registrations')
+
+    class Meta:
+        verbose_name = 'Inscrição'
+        verbose_name_plural = 'Inscrições'
+
+    def __str__(self):
+        return self.name
