@@ -39,4 +39,15 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-    
+class Activity(models.Model):
+    title = models.CharField(max_length=100)
+    speaker = models.CharField(max_length=75)
+    schedule = models.TimeField()
+    event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name='activities')
+
+    class Meta:
+        verbose_name = "Atividade"
+        verbose_name_plural = "Atividades"
+
+    def __str__(self):
+        return self.title
