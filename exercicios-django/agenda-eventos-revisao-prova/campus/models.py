@@ -35,6 +35,10 @@ class Event(models.Model):
     class Meta:
         verbose_name = "Evento"
         verbose_name_plural = "Eventos"
+        ordering = ['start_date']
+
+    def remaining_spaces(self):
+        return self.location.capacity - self.registrations.count()
 
     def __str__(self):
         return self.title
