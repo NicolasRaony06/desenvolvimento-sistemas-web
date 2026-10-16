@@ -64,3 +64,15 @@ class Registration(models.Model):
 
     def __str__(self):
         return self.name
+
+class Report(models.Model):
+    present = models.PositiveIntegerField()
+    observations = models.TextField(null=True, blank=True)
+    event = models.OneToOneField("Event", on_delete=models.CASCADE, related_name='report')
+
+    class Meta:
+        verbose_name = 'Relatório'
+        verbose_name_plural = 'Relatórios'
+
+    def __str__(self):
+        return self.event
