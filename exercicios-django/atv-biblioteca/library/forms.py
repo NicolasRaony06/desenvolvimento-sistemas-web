@@ -1,12 +1,21 @@
-from .models import Book
+from .models import Book, Author
 from django import forms
 
-class LivroForm(forms.ModelForm):
+class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = "__all__"
         widgets = {
-            'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
-            'autor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}), 'ano_publicacao': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de publicação'}), 
-            'disponivel': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'})
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
+            'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}), 'published_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de publicação'}), 
+            'available': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'})
             }
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ['name', 'nationality']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do Autor'}),
+            'nationality': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nacionalidade do Autor', 'required': 'False'})
+        }
