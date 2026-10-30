@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import LivroForm
+from .forms import BookForm, AuthorForm
 from .models import Book, Author
 
 # Create your views here.
 def register_book(request):
     if request.method == 'POST':
-        form = LivroForm(request.POST)
+        form = BookForm(request.POST)
         if form.is_valid():
             form.save()
         redirect('library:register_book')
     else:
-        form = LivroForm()
+        form = BookForm()
     return render(request, 'book/register.html', {'form': form})
 
 def view_books(request):
@@ -25,3 +25,13 @@ def view_author_detailed(request, id):
     )
 
     return render(request, 'author/view_detailed.html', {'author': author})
+
+def register_author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('library:view_books')
+    else:
+        form = AuthorForm()
+    return render(request, 'author/register_author.html', {'form': form})
