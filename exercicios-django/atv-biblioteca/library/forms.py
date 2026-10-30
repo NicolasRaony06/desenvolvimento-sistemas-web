@@ -17,5 +17,5 @@ class AuthorForm(forms.ModelForm):
         fields = ['name', 'nationality']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do Autor'}),
-            'nationality': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nacionalidade do Autor', 'required': 'False'})
+            'nationality': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nacionalidade do Autor'})
         }

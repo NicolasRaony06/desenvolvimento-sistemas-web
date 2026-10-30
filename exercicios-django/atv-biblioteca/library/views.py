@@ -30,8 +30,8 @@ def register_author(request):
     if request.method == 'POST':
         form = AuthorForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('library:view_books')
+            author = form.save()
+            return redirect('library:view_author_detailed', author.id)
     else:
         form = AuthorForm()
-    return render(request, 'author/register_author.html', {'form': form})
+    return render(request, 'author/register.html', {'form': form})
