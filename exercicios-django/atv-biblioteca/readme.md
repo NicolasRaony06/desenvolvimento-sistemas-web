@@ -44,9 +44,14 @@ Esta atividade implementa um sistema de biblioteca que permite cadastrar livros,
   - Nome plural definido como "Livros"
 - **Método `__str__`:** Retorna o título do livro
 
-### 2. Justificativa do `on_delete=models.PROTECT`
+### 2. Respostas Atividade
+#### 2.1 Justificativa do `on_delete=models.PROTECT`
 
 **Decisão:** Utilizar `models.PROTECT` na ForeignKey de `author` em `Book` para evitar perda de dados de Livro. Assim, para excluir autor é preciso primeiro resolver as pendencias existentes, no caso seus livros. Ao tentar remover autor é retornado um erro `ProtectedError`.
+
+#### 2.2 Explicação proteção django CRSF
+
+Ao retirar a tag `{% crsf_token %}` do template, o middleware do django impede que a página seja renderizada, retornando um erro HTTP 403 Forbidden com a mensagem `CSRF verification failed. Request aborted.` ao tentar enviar o formulário via POST. Isso é uma medida de segurança, pois o backend não consegue validar a vericidade da requisação sem o token de proteção embutido no formulário.
 
 ### 3. Configuração do Admin
 
