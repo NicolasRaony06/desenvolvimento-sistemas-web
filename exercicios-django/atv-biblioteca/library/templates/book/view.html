@@ -17,6 +17,7 @@
             {% for author in book.authors.all %}
               <h6 class="card-subtitle"><a href="{% url "library:view_author_detailed" author.id %}">{{author}}</a></h6>
             {% endfor %}  
+            <h6 class="card-subtitle"><a href="{% url "library:edit_book" book.id %}">Editar</a></h6>
             <h6 class="card-subtitle">{{book.published_year}}</h6>
           </div>
         </div>
