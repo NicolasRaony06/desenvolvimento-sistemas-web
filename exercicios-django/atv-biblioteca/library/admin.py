@@ -12,7 +12,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['tittle', 'get_authors', 'published_year', 'available']
+    list_display = ['title', 'get_authors', 'published_year', 'available']
     list_filter = ['available', 'categories']
     filter_horizontal = ['categories']
 

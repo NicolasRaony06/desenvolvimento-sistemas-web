@@ -4,12 +4,18 @@ from django import forms
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = "__all__"
+        fields = ['title', 'authors', 'published_year', 'available', 'categories']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
-            'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}), 'published_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de publicação'}), 
-            'available': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'})
+            'authors': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}),   
+            'published_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de publicação'}), 
+            'available': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'}),
+            'categories': forms.SelectMultiple(attrs={'class': 'form-control'})
             }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print(self.fields['categories'])
 
 class AuthorForm(forms.ModelForm):
     class Meta:
