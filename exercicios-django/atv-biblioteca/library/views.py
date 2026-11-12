@@ -15,7 +15,7 @@ def register_book(request):
 
 def view_books(request):
     if request.method == 'GET':
-        books = Book.objects.select_related('author')
+        books = Book.objects.prefetch_related('authors')
         return render(request, 'book/view.html', {'books': books})
 
 def view_author_detailed(request, id):
