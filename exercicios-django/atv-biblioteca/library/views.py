@@ -18,7 +18,7 @@ def register_book(request, id=None):
             return redirect('library:view_books')
     else:
         form = BookForm(instance=book)
-    return render(request, 'book/register.html', {'form': form})
+    return render(request, 'book/register_edit.html', {'form': form})
 
 def view_books(request):
     books = Book.objects.prefetch_related('authors')

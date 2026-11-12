@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block tittle %}
-    Cadastrar Livro
+    {% if request.resolver_match.url_name == 'edit_book' %}
+        Editar Livro
+    {% else %}
+        Cadastrar Livro
+    {% endif %}
 {% endblock tittle %}
 
 {% block body %}
-    <h1>Cadastrar Livro</h1>
+    <h1>{% if request.resolver_match.url_name == 'edit_book' %} Editar Livro {% else %} Cadastrar Livro {% endif %}</h1>
     <a href="{% url "library:view_books" %}" class="btn btn-primary">Listar Livros</a>
     {% for error in form.non_field_errors %}
         <p>{{error}}</p>
@@ -41,6 +45,6 @@
         {% for error in form.categories.errors %}
             <p>{{error}}</p>
         {% endfor %}
-        <button type='submit' class='form-control'>Enviar</button>
+        <button type='submit' class='form-control'>{% if request.resolver_match.url_name == 'edit_book' %} Editar Livro {% else %} Novo Livro {% endif %}</button>
     </form>
 {% endblock body %}
