@@ -7,9 +7,40 @@
 {% block body %}
     <h1>Cadastrar Livro</h1>
     <a href="{% url "library:view_books" %}" class="btn btn-primary">Listar Livros</a>
+    {% for error in form.non_field_errors %}
+        <p>{{error}}</p>
+    {% endfor %}
     <form method="post" class="form-control">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.title.label}}
+        {{form.title}}
+        {% for error in form.title.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+
+        {{form.authors.label}}
+        {{form.authors}}
+        {% for error in form.authors.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+
+        {{form.published_year.label}}
+        {{form.published_year}}
+        {% for error in form.published_year.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+
+        {{form.available.label}}
+        {{form.available}}
+        {% for error in form.available.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+
+        {{form.categories.label}}
+        {{form.categories}}
+        {% for error in form.categories.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
         <button type='submit' class='form-control'>Enviar</button>
     </form>
 {% endblock body %}

@@ -13,7 +13,7 @@
         {% for book in books %}
         <div class="card" style="width: 12rem;">
           <div class="card-body">
-            <h5 class="card-title">{{book.tittle}}</h5>
+            <h5 class="card-title">{{book.title}}</h5>
             {% for author in book.authors.all %}
               <h6 class="card-subtitle"><a href="{% url "library:view_author_detailed" author.id %}">{{author}}</a></h6>
             {% endfor %}  

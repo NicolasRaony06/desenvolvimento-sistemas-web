@@ -3,20 +3,26 @@ from .forms import BookForm, AuthorForm
 from .models import Book, Author
 
 # Create your views here.
-def register_book(request):
+def register_book(request, id=None):
+    book = None
+    if id:
+        book = get_object_or_404(
+            Book,
+            id=id
+        )
+
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-        redirect('library:register_book')
+            return redirect('library:view_books')
     else:
-        form = BookForm()
+        form = BookForm(instance=book)
     return render(request, 'book/register.html', {'form': form})
 
 def view_books(request):
-    if request.method == 'GET':
-        books = Book.objects.prefetch_related('authors')
-        return render(request, 'book/view.html', {'books': books})
+    books = Book.objects.prefetch_related('authors')
+    return render(request, 'book/view.html', {'books': books})
 
 def view_author_detailed(request, id):
     author = get_object_or_404(
