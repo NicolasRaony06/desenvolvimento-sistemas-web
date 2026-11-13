@@ -4,10 +4,10 @@ from django.db import models
 class Book(models.Model):
     title = models.CharField(max_length=200)
     #author = models.ForeignKey("Author", on_delete=models.PROTECT, null=True, blank=True)
-    authors = models.ManyToManyField("Author", related_name="books", blank=True)
+    authors = models.ManyToManyField("Author", related_name="books")
     published_year = models.IntegerField()
     available = models.BooleanField(default=True)
-    categories = models.ManyToManyField("Category", related_name="books", null=True, blank=True)
+    categories = models.ManyToManyField("Category", related_name="books", blank=True)
 
     class Meta:
         ordering = ['title']

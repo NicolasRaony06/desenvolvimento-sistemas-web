@@ -15,7 +15,7 @@ def register_book(request, id=None):
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('library:view_books')
+            return redirect('library:view_author_detailed', form.cleaned_data['authors'][0].id)
     else:
         form = BookForm(instance=book)
     return render(request, 'book/register_edit.html', {'form': form})
