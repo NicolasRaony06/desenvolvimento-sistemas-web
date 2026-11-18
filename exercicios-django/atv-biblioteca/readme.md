@@ -53,6 +53,34 @@ Esta atividade implementa um sistema de biblioteca que permite cadastrar livros,
 
 Ao retirar a tag `{% crsf_token %}` do template, o middleware do django impede que a página seja renderizada, retornando um erro HTTP 403 Forbidden com a mensagem `CSRF verification failed. Request aborted.` ao tentar enviar o formulário via POST. Isso é uma medida de segurança, pois o backend não consegue validar a vericidade da requisação sem o token de proteção embutido no formulário.
 
+#### 2.3 O LivroModelForm mudou? Por que as regras do Model funcionam nele e no Admin sem nenhuma alteração?
+
+O LivroModelForm apenas mudou para adicionar os novos campos de Model Livro, entretanto em relação a adição dos validadores não houve mudança. Isso se dá, porque o ModelForm quando instancia o model, já chama todas as validações de cada campo.
+
+#### 2.4 Qual é a diferença entre um validator e o método clean_<campo>()? Dê um exemplo de regra que só pode ser feita com clean_<campo>().
+
+Um validator por ser usando globalmente por todo o sistema, difentemente do clean_campo, que apenas é utilizavel no ModelForm. O clean_campo permite alterar o valor de um campo e formatar no formato desejado na hora de salvar o Model.
+
+#### 2.5 Para cada regra, diga qual estratégia usar: argumento do campo, validators=[...], clean_<campo>() ou clean(). Justifique. 
+<ul>
+  <li>
+    O título não pode ser igual ao nome do autor.
+    Resposta: clean(), pois é preciso validar dois campos do form, dessa forma, é mais correto utilizar um validação geral do form.
+  </li>
+  <li>
+    O título deve ser salvo sem espaços no início e no fim.
+    Resposta: validators, pois não há a intenção de formatar o campo, apenas checar e repassar o erro, impedindo que o campo seja salvo incorreto.
+  </li>
+  <li>
+    O número de páginas deve ser no máximo 5000.
+    Resposta: argumento do campo, nesse caso um max_lenght direto no campo do Model, já resolve de forma mais simples e direta a necessidade de validação.
+  </li>
+  <li>
+    Um livro "indisponível" precisa ter o ISBN preenchido.
+    Resposta: clean(), pois é preciso validar dois campos ao mesmo tempo.
+  </li>
+</ul>
+
 ### 3. Configuração do Admin
 
 #### `BookAdmin`
