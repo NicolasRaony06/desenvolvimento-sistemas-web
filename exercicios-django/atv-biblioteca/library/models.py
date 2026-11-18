@@ -1,11 +1,23 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
+from .validators import validate_published_year, validate_pages_number, validate_isbn_lenght
 
 # Create your models here.
 class Book(models.Model):
-    title = models.CharField(max_length=200)
-    #author = models.ForeignKey("Author", on_delete=models.PROTECT, null=True, blank=True)
+    title = models.CharField(
+        max_length=200, 
+        validators=[
+            MinLengthValidator(3, message="Título deve ter no mínimo 3 caracteres")
+        ])
     authors = models.ManyToManyField("Author", related_name="books")
-    published_year = models.IntegerField()
+    published_year = models.IntegerField(validators=[validate_published_year])
+    pages = models.IntegerField(null=True, blank=True, validators=[validate_pages_number])
+    isbn = models.IntegerField(
+        null=True, 
+        blank=True, 
+        validators=[
+            validate_isbn_lenght
+        ])
     available = models.BooleanField(default=True)
     categories = models.ManyToManyField("Category", related_name="books", blank=True)
 

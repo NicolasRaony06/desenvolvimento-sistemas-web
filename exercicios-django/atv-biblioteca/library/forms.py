@@ -5,11 +5,13 @@ from datetime import date
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'authors', 'published_year', 'available', 'categories']
+        fields = ['title', 'authors', 'published_year', 'available', 'categories', 'isbn', 'pages']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
             'authors': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}),   
             'published_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de publicação'}), 
+            'isbn': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Código isbn'}),
+            'pages': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número de páginas'}),
             'available': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'}),
             'categories': forms.SelectMultiple(attrs={'class': 'form-control'})
             }
