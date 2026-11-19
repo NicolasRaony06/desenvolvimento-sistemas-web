@@ -53,15 +53,15 @@ Esta atividade implementa um sistema de biblioteca que permite cadastrar livros,
 
 Ao retirar a tag `{% crsf_token %}` do template, o middleware do django impede que a página seja renderizada, retornando um erro HTTP 403 Forbidden com a mensagem `CSRF verification failed. Request aborted.` ao tentar enviar o formulário via POST. Isso é uma medida de segurança, pois o backend não consegue validar a vericidade da requisação sem o token de proteção embutido no formulário.
 
-#### 2.3 O LivroModelForm mudou? Por que as regras do Model funcionam nele e no Admin sem nenhuma alteração?
+#### 2.3.1 O LivroModelForm mudou? Por que as regras do Model funcionam nele e no Admin sem nenhuma alteração?
 
 O LivroModelForm apenas mudou para adicionar os novos campos de Model Livro, entretanto em relação a adição dos validadores não houve mudança. Isso se dá, porque o ModelForm quando instancia o model, já chama todas as validações de cada campo.
 
-#### 2.4 Qual é a diferença entre um validator e o método clean_<campo>()? Dê um exemplo de regra que só pode ser feita com clean_<campo>().
+#### 2.3.2 Qual é a diferença entre um validator e o método clean_<campo>()? Dê um exemplo de regra que só pode ser feita com clean_<campo>().
 
 Um validator por ser usando globalmente por todo o sistema, difentemente do clean_campo, que apenas é utilizavel no ModelForm. O clean_campo permite alterar o valor de um campo e formatar no formato desejado na hora de salvar o Model.
 
-#### 2.5 Para cada regra, diga qual estratégia usar: argumento do campo, validators=[...], clean_<campo>() ou clean(). Justifique. 
+#### 2.3.3 Para cada regra, diga qual estratégia usar: argumento do campo, validators=[...], clean_<campo>() ou clean(). Justifique. 
 <ul>
   <li>
     O título não pode ser igual ao nome do autor.
@@ -80,6 +80,23 @@ Um validator por ser usando globalmente por todo o sistema, difentemente do clea
     Resposta: clean(), pois é preciso validar dois campos ao mesmo tempo.
   </li>
 </ul>
+
+#### 2.4.1 O que acontece se esquecermos request.FILES na view? E se esquecermos o enctype no template? Reproduza os dois erros e descreva o que viram (o formulário dá algum aviso?).
+
+O ModelForm não irá conseguir ter acesso ao arquivo de imagem e salvar no servidor e no banco de dados como endereço. Esquecendo o enctype no template, o arquivo de imagem não será enviado para o backend, apenas o seu nome, que é passado pelo request.POST. Entretanto, em nenhum dos casos o formulário repassa o erro, a não ser que o campo de imagem esteja como obrigatório.
+
+#### 2.4.2 Qual é a diferença entre STATICFILES_DIRS / {% static %} e MEDIA_ROOT / .url? Quando usar cada um na Mini biblioteca?
+
+Os static files são os arquivos estáticos do servidor, sempre utilizados para renderização de imagem, css e javascript. Já o media, são arquivos enviados por usuários via upload. No contexto de uma Mini Biblioteca, se deve utilizar o static para arquivos como imagens não atreladas à um usuário e css/js, e já o media para arquivos como capa de um livro ou foto de perfil. 
+
+#### 2.4.3 Ao excluir um livro (ou trocar a capa), o arquivo antigo continua em media/capas/. Por que isso acontece e que problema pode causar a longo prazo?
+
+Sim, por padrão o django não faz o tratamento de arquivos atrelados a campos que foram excluídos. Isso pode gerar excesso de dados inúteis que levaram ao servidor de arquivos local ou remoto a exceder seu armazenamento com dados desnecessários.
+
+#### 2.4.4 Por que a extensão do arquivo não basta como proteção? Que outros cuidados o servidor deve ter com uploads?
+
+Porque usuarios mal intencionados conseguem ainda enviar arquivos que não são imagens, mas que têm a extensão de uma, como exemplo <code>malware.js.png</code>. Por isso o servidor deve validar o formato do arquivo abrindo ele e checando sua assinatura interna em bytes. Além disso, é válido limitar o tamanho do arquivo antes de ser salvo, e salvar num local externo ao diretório base do servidor.
+
 
 ### 3. Configuração do Admin
 
