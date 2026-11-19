@@ -5,7 +5,7 @@ from datetime import date
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'authors', 'published_year', 'available', 'categories', 'isbn', 'pages']
+        fields = ['title', 'authors', 'published_year', 'available', 'categories', 'isbn', 'pages', 'cover']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título do livro'}), 
             'authors': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Nome do autor'}),   
@@ -13,7 +13,8 @@ class BookForm(forms.ModelForm):
             'isbn': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Código isbn'}),
             'pages': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número de páginas'}),
             'available': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Disponível'}),
-            'categories': forms.SelectMultiple(attrs={'class': 'form-control'})
+            'categories': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'cover': forms.FileInput(attrs={'class': 'form-control'}) 
             }
 
     def clean_title(self):

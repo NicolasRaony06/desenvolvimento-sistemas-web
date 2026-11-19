@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
-from .validators import validate_published_year, validate_pages_number, validate_isbn_lenght
+from django.core.validators import MinLengthValidator, FileExtensionValidator
+from .validators import *
 
 # Create your models here.
 class Book(models.Model):
@@ -18,6 +18,18 @@ class Book(models.Model):
         validators=[
             validate_isbn_lenght
         ])
+    cover = models.ImageField(
+        upload_to="books/", 
+        null=True, 
+        blank=True,
+        validators=[
+            FileExtensionValidator(
+                ['jpg', 'jpeg', 'png'], 
+                message="O formato do arquivo deve ser jpg, jpeg ou png"
+            ),
+            validate_file_size
+        ]
+    )
     available = models.BooleanField(default=True)
     categories = models.ManyToManyField("Category", related_name="books", blank=True)
 

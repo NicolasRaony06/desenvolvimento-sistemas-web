@@ -13,7 +13,7 @@ def register_book(request, id=None):
         )
 
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
             authors_id = ','.join(str(author.id) for author in form.cleaned_data['authors'])
