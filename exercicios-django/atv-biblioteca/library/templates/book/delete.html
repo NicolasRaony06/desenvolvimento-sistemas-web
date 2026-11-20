@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Deletar {{book}}
+{% endblock title %}
+
+{% block body %}
+    <div class="container">
+        <h1>Deletar {{book}}?</h1>
+        <form method="post" class="form-control">
+            {% csrf_token %}
+            <button type="submit">Confirmar</button>
+        </form>
+        <a href="{% url "library:view_books" %}">Cancelar</a>
+    </div>
+{% endblock body %}
