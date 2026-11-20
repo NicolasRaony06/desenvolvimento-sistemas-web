@@ -97,6 +97,21 @@ Sim, por padrão o django não faz o tratamento de arquivos atrelados a campos q
 
 Porque usuarios mal intencionados conseguem ainda enviar arquivos que não são imagens, mas que têm a extensão de uma, como exemplo <code>malware.js.png</code>. Por isso o servidor deve validar o formato do arquivo abrindo ele e checando sua assinatura interna em bytes. Além disso, é válido limitar o tamanho do arquivo antes de ser salvo, e salvar num local externo ao diretório base do servidor.
 
+#### 2.5.1 Na CreateView, quem faz o if request.method == "POST" que escrevíamos à mão? O que acontece quando o formulário é inválido?
+
+O metodo dispatch() faz a checagem de request.method e chama self.get() ou self.post() de acordo com a condição. Quando o formulário é invalido, o form_invalid() é chamado a partir da aferição do is_valid() do form recebido.
+
+#### 2.5.2 Por que o upload da capa continuou funcionando na CreateView sem passarmos request.FILES manualmente?
+
+Porque a propria view generica já lida com isso, passando o request.FILES para o form não hora de instanciar a classe ModelForm.
+
+#### 2.5.3 Por que o DeleteView mostra uma página de confirmação e só exclui no POST? Que problema aconteceria se a exclusão ocorresse em um GET?
+
+Porque a exclusão é preciso que hajá um método de confirmação mais seguro, uma vez que usar o get permitiria que uma exclusão ocorresse por apenas acessar por engano a url de exclusão. Entrentanto, fazendo o get() carregar uma página com um form com método POST, implica em o usuario ter que clicar num botão do tipo submit.
+
+#### 2.5.4 Cite uma vantagem e uma desvantagem das CBVs em relação às FBVs. Em que situação você ainda escolheria uma função?
+
+O uso de CBVs permite uma maior otimização e eficiencia em operações genericas com um CRUD. Entretanto, quando é preciso fazer muitas operações lógicas além do padrão, as CBVs passam a se igualar as FBVs. Pra isso, em situações que requer muita logica propria de regras de negócio do sistema que vão além de um CRUD, o uso das Function Based Views se torna mais adequado e legível. 
 
 ### 3. Configuração do Admin
 
