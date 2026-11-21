@@ -11,7 +11,7 @@ def validate_pages_number(value):
         raise ValidationError(f"O número de páginas do livro deve estar entre 1 a 5000.")
 
 def validate_isbn_lenght(value):
-    if not len(str(abs(value))) == 13:
+    if not len(str(value)) == 13:
         raise ValidationError(f"Código ISBN deve ter 13 dígitos.")
 
 def validate_file_size(value):

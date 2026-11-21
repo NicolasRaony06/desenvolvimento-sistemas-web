@@ -12,12 +12,14 @@ class Book(models.Model):
     authors = models.ManyToManyField("Author", related_name="books")
     published_year = models.IntegerField(validators=[validate_published_year])
     pages = models.IntegerField(null=True, blank=True, validators=[validate_pages_number])
-    isbn = models.IntegerField(
-        null=True, 
-        blank=True, 
+    isbn = models.CharField(
+        max_length=13,
+        null=True,
+        blank=True,
         validators=[
             validate_isbn_lenght
-        ])
+        ]
+    )
     cover = models.ImageField(
         upload_to="books/", 
         null=True, 

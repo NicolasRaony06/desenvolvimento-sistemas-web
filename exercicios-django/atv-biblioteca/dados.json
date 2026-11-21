@@ -1,0 +1,173 @@
+[
+{
+  "model": "library.book",
+  "pk": 2,
+  "fields": {
+    "title": "PadrÒo do AmanhÒ",
+    "published_year": 2021,
+    "pages": 252,
+    "isbn": 1234567891238,
+    "cover": "books/APOO-diagrama-classes.drawio.png",
+    "available": true,
+    "authors": [
+      3,
+      4
+    ],
+    "categories": []
+  }
+},
+{
+  "model": "library.book",
+  "pk": 3,
+  "fields": {
+    "title": "O grande",
+    "published_year": 2026,
+    "pages": 36,
+    "isbn": 1234567891234,
+    "cover": "",
+    "available": true,
+    "authors": [
+      6,
+      3
+    ],
+    "categories": []
+  }
+},
+{
+  "model": "library.book",
+  "pk": 4,
+  "fields": {
+    "title": "Amanhecer",
+    "published_year": 2022,
+    "pages": 36,
+    "isbn": 1234567891234,
+    "cover": "",
+    "available": true,
+    "authors": [
+      6,
+      3
+    ],
+    "categories": []
+  }
+},
+{
+  "model": "library.book",
+  "pk": 5,
+  "fields": {
+    "title": "Um futuro sem vocÛ",
+    "published_year": 2026,
+    "pages": 240,
+    "isbn": 1234567899870,
+    "cover": "",
+    "available": false,
+    "authors": [
+      6
+    ],
+    "categories": []
+  }
+},
+{
+  "model": "library.author",
+  "pk": 1,
+  "fields": {
+    "name": "a",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 2,
+  "fields": {
+    "name": "testeteee",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 3,
+  "fields": {
+    "name": "NICOLAS RAONY DANTAS QUEIROZ",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 4,
+  "fields": {
+    "name": "NICOLAS RAONY DANTAS QUEIROZ",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 5,
+  "fields": {
+    "name": "NICOLAS RAONY DANTAS QUEIROZ",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 6,
+  "fields": {
+    "name": "Author teste",
+    "nationality": null
+  }
+},
+{
+  "model": "library.author",
+  "pk": 7,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 8,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 9,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 10,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 11,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 12,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+},
+{
+  "model": "library.author",
+  "pk": 13,
+  "fields": {
+    "name": "JosÚ Almeida",
+    "nationality": "Brasileiro"
+  }
+}
+]
